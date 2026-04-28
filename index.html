@@ -398,7 +398,7 @@
 
   <main class="player">
     <section class="cover-wrap" aria-label="Capa do álbum">
-      <img class="cover" src="./Dobrei%20a%20Esquina%20Capa.png" alt="Capa da música Dobrei a Esquina
+      <img class="cover" src="./Dobrei%20a%20Esquina%20Capa.png" alt="Capa da música Dobrei a Esquina">
     </section>
 
     <section class="meta">
@@ -456,7 +456,7 @@
     </div>
   </section>
 
-  <audio id="audio" src="Dobrei a Esquina.mp3" preload="auto" playsinline></audio>
+  <audio id="audio" src="Dobrei%20a%20Esquina.mp3" preload="auto" playsinline></audio>
 
   <script>
     const audio = document.getElementById('audio');
@@ -587,10 +587,6 @@
         tapLayer.classList.remove('show');
         hint.textContent = 'letra';
       } catch (error) {
-        // não força overlay automaticamente sem autoplay
-      }
-      updatePlayIcon();
-    } catch (error) {
         tapLayer.classList.add('show');
       }
       updatePlayIcon();
@@ -657,10 +653,8 @@
       if (!document.hidden) updateProgress();
     });
 
-    // tocar ao tocar em qualquer lugar da tela
     let hasInteracted = false;
     document.body.addEventListener('click', async (e) => {
-      // evita conflito com botões que já controlam o áudio
       const isControl = e.target.closest('#playBtn, #shareBtn, #muteBtn, #volume, #progress');
       if (isControl) return;
 
@@ -691,7 +685,6 @@
 
     window.addEventListener('load', () => {
       setActiveLine(0);
-      // autoplay removido para evitar bloqueios em navegadores mobile
     });
   </script>
 </body>
