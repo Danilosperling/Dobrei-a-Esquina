@@ -576,14 +576,21 @@
         tapLayer.classList.remove('show');
         hint.textContent = 'letra';
       } catch (error) {
+        // não força overlay automaticamente sem autoplay
+      }
+      updatePlayIcon();
+    } catch (error) {
         tapLayer.classList.add('show');
       }
       updatePlayIcon();
     }
 
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) playAudio();
-      else audio.pause();
+    playBtn.addEventListener('click', async () => {
+      if (audio.paused) {
+        await playAudio();
+      } else {
+        audio.pause();
+      }
       updatePlayIcon();
     });
 
@@ -658,7 +665,7 @@
 
     window.addEventListener('load', () => {
       setActiveLine(0);
-      playAudio();
+      // autoplay removido para evitar bloqueios em navegadores mobile
     });
   </script>
 </body>
